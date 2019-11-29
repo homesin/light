@@ -7,14 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Hello World!!</h3>
-    <h3>Hello World!!</h3>
-    <img src="light1.jpg"></img>
-    <button onclick="welcom();">welcom</button>
+    <h3>Street Light</h3>
+    <button onclick="light();">click</button><br>
+    <img id="img1" src="" >
+    </button>
     <script>
-    function welcom(){
-        console.log("Hello");
-    }
-    </script>
+        function light(){
+            var hash=location.hash;
+            var img=document.getElementById("img1");
+            img.src="/img/"+hash;    
+        }
+    </script>    
+
 </body>
 </html>
