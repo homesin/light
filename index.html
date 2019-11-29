@@ -11,11 +11,12 @@
     <button onclick="light();">click</button><br>
     <img id="img1" src="" >
     </button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
         function light(){
             var hash=location.hash;
             var img=document.getElementById("img1");
-            img.src="/img/"+hash;    
+            img.src="/img/"+hash.replace('#','');    
         }
     </script>    
 
