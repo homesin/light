@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>JSON TEST</h3>
+    <button id="driver">click</button>
+    <p></p>
+    <div id=""></div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+     $(document).ready(function() {           
+           $("#driver").click(function(event){
+              $.getJSON('light.json', function(jd) {
+                 $('#stage').html('<p> Name: ' + jd.number + '</p>');
+                 $('#stage').append('<p>Age : ' + jd.folder+ '</p>');
+                 $('#stage').append('<p> Sex: ' + jd.file+ '</p>');
+              });
+           });
+              
+        });    
+    </script>
+</body>
+</html>
