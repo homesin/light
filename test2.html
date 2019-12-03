@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>JSON TEST</h3>
+    <input id="input1" type="text">
+    <button id="driver">click</button>
+    <p></p>    
+    <div id="stage"></div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+     $(document).ready(function() {           
+           $("#driver").click(function(event){
+                $.getJSON('light.json', function(jd) {
+	            $('#stage').html('<p>路燈編號: ' + jd[0]["路燈編號"] + '</p>');
+	            $('#stage').append('<img src=https://homesin.github.io/light/img/'+jd[0]["pfolder"]+'/'+jd[0]["pfile"][0]+'>');
+                });
+           });
+              
+        });    
+    </script>
+</body>
+</html>
