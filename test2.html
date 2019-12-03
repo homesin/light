@@ -17,12 +17,11 @@
      $(document).ready(function() {           
            $("#driver").click(function(event){
                 $.getJSON('light.json', function(jd) {
-	           
+                $('#stage').html('<p>路燈編號: ' + $('#input1').val() + '</p>');
                 var i,ii;
                 for(i in jd){
-                    if (jd[i]["路燈編號"]=$('#input1').val()){                        
-                        for (ii in jd[i]["pfile"]){
-                        $('#stage').html('<p>路燈編號: ' + $('#input1').val() + '</p>');
+                    if (jd[i]["路燈編號"]==$('#input1').val()){                        
+                        for (ii in jd[i]["pfile"]){                        
                         $('#stage').append('<img src=https://homesin.github.io/light/img/'+jd[i]["pfolder"]+'/'+jd[i]["pfile"][ii]+'>');
                         }  
                     }
