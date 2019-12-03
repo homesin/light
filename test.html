@@ -16,9 +16,9 @@
      $(document).ready(function() {           
            $("#driver").click(function(event){
               $.getJSON('light.json', function(jd) {
-                 $('#stage').html('<p> Name: ' + jd.number + '</p>');
-                 $('#stage').append('<p>Age : ' + jd.folder+ '</p>');
-                 $('#stage').append('<p> Sex: ' + jd.file+ '</p>');
+                 $('#stage').html('<p> Name: ' + jd[0].number + '</p>');
+                 $('#stage').append('<p>Age : ' + jd[0].folder+ '</p>');
+                 $('#stage').append('<p> Sex: ' + jd[0].file+ '</p>');
               });
            });
               
