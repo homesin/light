@@ -7,17 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Street Light</h3>
-    <button onclick="light();">click</button><br>
-    <img id="img1" src="" >
-    </button>
+    <div id="stage"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
-        function light(){
-            var hash=location.hash;
-            var img=document.getElementById("img1");
-            img.src="/img/"+hash.replace('#','');    
-        }
+        $(document).ready(function() {
+            if(location.hash!=""){
+                if(location.hash.replace('#','')!=""){
+                    n=location.hash.replace('#','')           
+                    $.getJSON('light.json', function(jd) {
+                        $('#stage').html('<p>路燈編號: ' +n + '</p>');
+                        var i,ii;
+                        for(i in jd){
+                            if (jd[i]["路燈編號"]==n){                        
+                                for (ii in jd[i]["pfile"]){                        
+                                $('#stage').append('<img src=https://homesin.github.io/light/img/'+jd[i]["pfolder"]+'/'+jd[i]["pfile"][ii]+'>');
+                                }  
+                            }
+                        }                         
+                    });
+                }
+            }         
+        });    
     </script>    
 
 </body>
