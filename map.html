@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div id="mapid" style="height: 480px;width:480px;"></div>
+    <script type="text/javascript">
+
+        // 建立 Leaflet 地圖
+        var map = L.map('mapid');      
+        // 設定經緯度座標
+        map.setView(new L.LatLng(22.992, 120.239), 12);        
+        // 設定圖資來源
+        var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 16});
+        map.addLayer(osm);
+        var marker = L.marker([22.992, 120.239]).addTo(map);
+      </script>
+</body>
+</html>

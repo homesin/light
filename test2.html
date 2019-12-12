@@ -5,32 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NCYU Light Management System</title>
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
 </head>
 <body>
+    <div>
     <h3>NCYU Light Management System</h3>
     <h2>請輸入路燈編號查詢</h2>
     <input id="input1" type="text">
     <button id="driver">click</button>
-    <p></p>    
-    <div id="stage"></div>
+    </div>
+            
+    <div id="stage">
+        <p id=stage1></p>
+        <div id="stage2">
+        </div>
+    </div>    
     <script src="jquery-3.4.1.min.js"></script>
     <script>
      $(document).ready(function() {           
            $("#driver").click(function(event){
+                if ($('#stage').length==1){$('#stage').html('<p id=stage1></p><div id="stage2"></div>')};
                 $.getJSON('light.json', function(jd) {
-                $('#stage').html('<p>路燈編號: ' + $('#input1').val() + '</p>');
                 var i,ii;
                 for(i in jd){
-                    if (jd[i]["路燈編號"]==$('#input1').val()){                        
+                    if (jd[i]["路燈編號"]==$('#input1').val()){
+                        lat=jd[i]["緯度"];
+                        lon=jd[i]["經度"];
+                        var linumber=jd[i]["路燈編號"];
+                        var litype=jd[i]["燈具種類"];
+                        var lipole=jd[i]["燈桿種類"];
+                        var liwatt=jd[i]["瓦數"];
+                        var ligroup=jd[i]["迴路"];
+                        var liheight=jd[i]["離地高"];
+                        //showmap(lat,lon);    
+                        $('#stage2').html('<div id="map" style="height: 480px;width:480px;"></div>')
+                        var map = L.map('map');      
+                        map.setView(new L.LatLng(lat, lon), 17);        
+                        var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {minZoom: 8, maxZoom: 19});
+                        map.addLayer(osm);
+                        var marker = L.marker([lat, lon]).addTo(map)
+                        .bindPopup('<br>路燈編號 : '+linumber+'<br>燈具種類 : '+litype+'<br>燈桿種類 : '+lipole+'<br>燈具瓦數 : '+liwatt+'<br>迴路 : '+ligroup+'<br>離地高 : '+liheight)
+                        .openPopup();                 
                         for (ii in jd[i]["pfile"]){                        
                         $('#stage').append('<img src=https://homesin.github.io/light/img/'+jd[i]["pfolder"]+'/'+jd[i]["pfile"][ii]+'>');
                         }  
                     }
+                    if ($('#stage2').text()==''){$('#stage1').html('<h2>此編號找不到請重新輸入</h2>')}else{$('#stage1').html('')};
+                    //$('#stage1').html('<h2>此編號找不到請重新輸入</h2>')
                 }                         
                 });
            });              
-        });    
-        //$("#input1").val();
-    </script>
+        });   
+        
+       </script>
+       
 </body>
 </html>
