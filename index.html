@@ -37,7 +37,7 @@
                                 var ligroup=jd[i]["迴路"];
                                 var liheight=jd[i]["離地高"];
                                 //showmap(lat,lon);    
-                                $('#stage2').html('<div id="map" style="height: 480px;width:480px;"></div>')
+                                $('#stage2').html('<div id="map" style="height: 400px;width:400px;"></div>')
                                 var map = L.map('map');      
                                 map.setView(new L.LatLng(lat, lon), 17);        
                                 var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {minZoom: 8, maxZoom: 19});
